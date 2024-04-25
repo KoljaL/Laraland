@@ -1,6 +1,6 @@
 # Headline 1
 
-![Image 1](image1.jpg)
+![Image 1](content/img/Filament.png)
 
 [Link 1](https://example.com)
 [GitHub Repository](https://github.com/user/repo1)
@@ -12,7 +12,7 @@ Paragraph 1
 
 # Headline 2
 
-![Image 2](image2.jpg)
+![Image 1](content/img/Herd.png)
 
 [Link 2](https://example.com)
 [GitHub Repository](https://github.com/user/repo2)
