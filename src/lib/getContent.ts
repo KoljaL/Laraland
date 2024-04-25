@@ -1,10 +1,9 @@
 // src/routes/convert.js
 
-import { writable } from 'svelte/store';
 import fs from 'fs';
 import path from 'path';
 
-export async function get() {
+export async function getContent() {
 	const owner = 'KoljaL'; // Replace with the GitHub username or organization name
 	const repo = 'Laraland'; // Replace with the GitHub repository name
 	const path = 'content/Laraland.md'; // Replace with the path to your markdown file in the repository
@@ -13,7 +12,7 @@ export async function get() {
 	const sortedJsonData = sortJsonByHeadline(jsonData);
 	// await downloadImages(imageUrls);
 	return {
-		body: sortedJsonData
+		sortedJsonData
 	};
 }
 
