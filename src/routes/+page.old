@@ -1,0 +1,76 @@
+<script lang="ts">
+	let data = fetchData().then((md) => {
+		splitMarkdownInSections(md);
+	});
+
+	async function fetchData() {
+		const res = await fetch(
+			'https://raw.githubusercontent.com/KoljaL/Laraland/main/content/Laraland.md'
+		);
+		const md = await res.text();
+		// console.log(md);
+		return md;
+	}
+
+	async function exraction(markdownText: string) {
+		const headlineRegex = /^## (.*)$/m;
+		const imageRegex = /\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/;
+		const linkRegex = /\[(.*?)\]\((.*?)\)/;
+		const tagsRegex = /Tags: (.*)/;
+		const categoriesRegex = /Categories: (.*)/;
+
+		const headlineMatch = markdownText.match(headlineRegex);
+		const imageMatch = markdownText.match(imageRegex);
+		const linkMatch = markdownText.match(linkRegex);
+		const tagsMatch = markdownText.match(tagsRegex);
+		const categoriesMatch = markdownText.match(categoriesRegex);
+
+		const headline = headlineMatch ? headlineMatch[1] : null;
+		const imageAltText = imageMatch ? imageMatch[1] : null;
+		const imageUrl = imageMatch ? imageMatch[2] : null;
+		const linkText = linkMatch ? linkMatch[1] : null;
+		const linkUrl = linkMatch ? linkMatch[2] : null;
+		const tags = tagsMatch ? tagsMatch[1].split(',').map((tag) => tag.trim()) : [];
+		const categories = categoriesMatch
+			? categoriesMatch[1].split(',').map((category) => category.trim())
+			: [];
+
+		const description = markdownText
+			.replace(headlineRegex, '')
+			.replace(imageRegex, '')
+			.replace(linkRegex, '')
+			.replace(tagsRegex, '')
+			.replace(categoriesRegex, '')
+			.trim();
+
+		return {
+			headline,
+			imageAltText,
+			imageUrl,
+			linkText,
+			linkUrl,
+			tags,
+			categories,
+			description
+		};
+	}
+
+	async function splitMarkdownInSections(md: any) {
+		const sections = md.split('---\n');
+		const content = [];
+		let entry = {};
+		for (let section of sections) {
+			if (!section) continue;
+			section = section.trim();
+			// console.log('section\n', section);
+			entry = await exraction(section);
+			content.push(entry);
+		}
+		// console.log(content);
+		return content;
+	}
+
+	$: console.log(data);
+</script>
+
+<main></main>

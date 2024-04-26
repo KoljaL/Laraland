@@ -1,104 +1,166 @@
 <script lang="ts">
-	let data = fetchData().then((md) => {
-		markdownToJSON(md);
-	});
-
-	async function fetchData() {
-		const res = await fetch(
-			'https://raw.githubusercontent.com/KoljaL/Laraland/main/content/Laraland.md'
-		);
-		const md = await res.text();
-		console.log(md);
-		return md;
+	interface ContentEntry {
+		headline: string | null;
+		imageAltText: string | null;
+		imageUrl: string | null;
+		linkText: string | null;
+		linkUrl: string | null;
+		tags: string[];
+		categories: string[];
+		description: string;
 	}
 
-	function markdownToJSON(md: any) {
-		const sections = md.split('---\n');
-		const content = [];
-		let entry = {};
-		for (let section of sections) {
-			if (!section) continue;
-			section = section.trim();
-			console.log('section\n', section);
+	// type ContentEntry can be null
+	// type ContentEntry = {
+	// 	headline: string | null;
+	// 	imageAltText: string | null;
+	// 	imageUrl: string | null;
+	// 	linkText: string | null;
+	// 	linkUrl: string | null;
+	// 	tags: string[];
+	// 	categories: string[];
+	// 	description: string;
+	// };
 
-			// ## Headline 2
-			// ![Image 1](content/img/Herd.png)
-			// [Link 2](https://example.com)
-			// [Repository](https://github.com/user/repo2)
-			// Tags: tag4, tag5, tag6
-			// Lorem ipsum dolor sit amet, consectetur adipiscing elit
-			// - blue
-			// - blue
-			// - blue
+	// type ContentEntries = ContentEntry[];
 
-			// // find headline with ##
-			// const headline = section.match(/^## (.*)$/m);
-			// console.log('headline\n', headline);
-			// // find image with ![...](...)
-			// const image = section.match(/!\[.*\]\((.*)\)/);
-			// console.log('image\n', image);
-			// // find repolink with [Repo](...)
-			// const repolink = section.match(/\[Repo\]\((.*)\)/);
-			// console.log('repolink\n', repolink);
-			// // find link with not [Repo](...)
-			// const link = section.match(/\[.*\]\((.*)\)/);
-			// console.log('link\n', link);
-			// remove headline, image, repolink, link from section without regex
-			// const text = section
-			// 	.replace(/^## (.*)$/m, '')
-			// 	.replace(/!\[.*\]\((.*)\)/, '')
-			// 	.replace(/\[Repo\]\((.*)\)/, '')
-			// 	.replace(/\[.*\]\((.*)\)/, '')
-			// 	.trim();
-			// console.log('text\n', text);
-
-			// if (line.startsWith('# ')) {
-			// 	if (entry.headline) {
-			// 		content.push(entry);
-			// 	}
-			// 	entry = { headline: line.slice(2) };
-			// } else if (line.startsWith('![')) {
-			// 	entry.image = line.slice(4, -1);
-			// } else if (line.startsWith('[')) {
-			// 	entry.link = line.slice(1, -1);
-			// } else {
-			// 	entry.paragraph = line;
-			// }
+	async function fetchData(url: string): Promise<string> {
+		const response = await fetch(url);
+		if (!response.ok) {
+			throw new Error(
+				`Failed to fetch data from ${url}: ${response.status} ${response.statusText}`
+			);
 		}
-		// content.push(entry);
-		// data = { content };
+		return await response.text();
 	}
 
-	$: console.log(data);
+	async function extractMarkdownSection(section: string): Promise<ContentEntry> {
+		const headlineRegex = /^## (.*)$/m;
+		const imageRegex = /\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/;
+		const linkRegex = /\[(.*?)\]\((.*?)\)/;
+		const tagsRegex = /Tags: (.*)/;
+		const categoriesRegex = /Categories: (.*)/;
+
+		const headlineMatch = section.match(headlineRegex);
+		const imageMatch = section.match(imageRegex);
+		const linkMatch = section.match(linkRegex);
+		const tagsMatch = section.match(tagsRegex);
+		const categoriesMatch = section.match(categoriesRegex);
+
+		const headline = headlineMatch ? headlineMatch[1] : null;
+		const imageAltText = imageMatch ? imageMatch[1] : null;
+		const imageUrl = imageMatch ? imageMatch[2] : null;
+		const linkText = linkMatch ? linkMatch[1] : null;
+		const linkUrl = linkMatch ? linkMatch[2] : null;
+		const tags = tagsMatch ? tagsMatch[1].split(',').map((tag) => tag.trim()) : [];
+		const categories = categoriesMatch
+			? categoriesMatch[1].split(',').map((category) => category.trim())
+			: [];
+
+		const description = section
+			.replace(headlineRegex, '')
+			.replace(imageRegex, '')
+			.replace(linkRegex, '')
+			.replace(tagsRegex, '')
+			.replace(categoriesRegex, '')
+			.trim();
+
+		return {
+			headline,
+			imageAltText,
+			imageUrl,
+			linkText,
+			linkUrl,
+			tags,
+			categories,
+			description
+		};
+	}
+
+	async function splitMarkdownInSections(md: string): Promise<ContentEntry[]> {
+		const sections = md.split('---\n');
+		const content: ContentEntry[] = [];
+		for (const section of sections) {
+			if (!section.trim()) continue;
+			const entry = await extractMarkdownSection(section.trim());
+			content.push(entry);
+		}
+		return content;
+	}
+
+	async function main() {
+		const url = 'https://raw.githubusercontent.com/KoljaL/Laraland/main/content/Laraland.md';
+		try {
+			const markdownContent = await fetchData(url);
+			const content = await splitMarkdownInSections(markdownContent);
+			// console.log(content);
+			return content;
+		} catch (error) {
+			console.error('Error:', (error as Error).message);
+			return [];
+		}
+	}
+
+	async function loadContent() {
+		try {
+			content = await main();
+			return content;
+		} catch (error) {
+			console.error('Error:', (error as Error).message);
+			throw error;
+		}
+	}
+	let content: ContentEntry[] = [];
+	loadContent();
+	// $: console.log(content);
 </script>
 
-<main>
-	{#await data}
-		<p>loading...</p>
-	{:then data}
-		<!-- {#if data}
-			{#each data.split('\n') as line}
-				<p>{line}</p>
-			{/each}
-		{/if} -->
-		{data}
-	{/await}
-	<!-- 
-		<h1>LaraLand</h1>
-
-		<ul>
-			{#each data.content as entry}
-				<li>
-					<h2>{entry.headline}</h2>
-					{#if entry.image}
-						<img src={entry.image} alt={entry.headline} />
-					{/if}
-					{#if entry.link}
-						<a href={entry.link}>Link</a>
-					{/if}
-					<p>{entry.paragraph}</p>
-				</li>
-			{/each}
-		</ul>
-    -->
-</main>
+<div class="container mx-auto px-4 py-8">
+	{#if content.length > 0}
+		{#each content as entry}
+			<article class="text-secondary dark:text-secondary mb-6 rounded-md p-6 shadow-md">
+				{#if entry.headline}
+					<h2 class="mb-4 text-xl font-bold">{entry.headline}</h2>
+				{/if}
+				{#if entry.imageUrl}
+					<img src={entry.imageUrl} alt={entry.imageAltText} class="mb-4 rounded-md" />
+				{/if}
+				{#if entry.linkUrl}
+					<a href={entry.linkUrl} class="mb-4 text-blue-500 hover:underline">{entry.linkText}</a>
+				{/if}
+				{#if entry.tags.length}
+					<div class="mb-4 flex flex-wrap">
+						{#each entry.tags as tag}
+							<span class="mb-2 mr-2 rounded-full bg-gray-200 px-3 py-1 text-sm text-gray-700"
+								>{tag}</span
+							>
+						{/each}
+					</div>
+				{/if}
+				{#if entry.categories.length}
+					<div class="mb-4 flex flex-wrap">
+						{#each entry.categories as category}
+							<span class="mb-2 mr-2 rounded-full bg-blue-200 px-3 py-1 text-sm text-blue-700"
+								>{category}</span
+							>
+						{/each}
+					</div>
+				{/if}
+				<p class="text-gray-700">{entry.description}</p>
+			</article>
+		{/each}
+	{:else}
+		<p>No content available</p>
+	{/if}
+</div>
+<!-- 
+{#await loadContent()}
+	<p>Loading...</p>
+{:then content}
+	{#each content as entry}
+		<article>
+		</article>
+	{/each}
+{:catch error}
+	<p>Error: {error.message}</p>
+{/await} -->
