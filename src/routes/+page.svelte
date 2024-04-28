@@ -1,28 +1,6 @@
 <script lang="ts">
-	interface ContentEntry {
-		headline: string | null;
-		imageAltText: string | null;
-		imageUrl: string | null;
-		linkText: string | null;
-		linkUrl: string | null;
-		tags: string[];
-		categories: string[];
-		description: string;
-	}
-
-	// type ContentEntry can be null
-	// type ContentEntry = {
-	// 	headline: string | null;
-	// 	imageAltText: string | null;
-	// 	imageUrl: string | null;
-	// 	linkText: string | null;
-	// 	linkUrl: string | null;
-	// 	tags: string[];
-	// 	categories: string[];
-	// 	description: string;
-	// };
-
-	// type ContentEntries = ContentEntry[];
+	import type { ItemEntry } from '$lib/types';
+	import ItemCard from '$lib/components/ItemCard.svelte';
 
 	async function fetchData(url: string): Promise<string> {
 		const response = await fetch(url);
@@ -34,22 +12,32 @@
 		return await response.text();
 	}
 
-	async function extractMarkdownSection(section: string): Promise<ContentEntry> {
+	async function extractMarkdownSection(section: string): Promise<ItemEntry> {
 		const headlineRegex = /^## (.*)$/m;
 		const imageRegex = /\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/;
+		// const imageUrlRegex = /\((.*?)\)/;
+		// const imageUrlRegex = !\[[^\]]*\]\((.*?)\s*("(?:.*[^"])")?\s*\);
+		// regex to get the image url and not from a link
+		// const imageUrlRegex = /\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/;
 		const linkRegex = /\[(.*?)\]\((.*?)\)/;
 		const tagsRegex = /Tags: (.*)/;
 		const categoriesRegex = /Categories: (.*)/;
 
+		const imageUrlRegex = /\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/;
+		const matches = imageUrlRegex.exec(section);
+		const imageUrl = matches ? matches[3] : null;
+		console.log(imageUrl);
+
 		const headlineMatch = section.match(headlineRegex);
-		const imageMatch = section.match(imageRegex);
+		const imageMatch = section.match(imageUrlRegex);
+		// console.log(imageMatch);
 		const linkMatch = section.match(linkRegex);
 		const tagsMatch = section.match(tagsRegex);
 		const categoriesMatch = section.match(categoriesRegex);
 
 		const headline = headlineMatch ? headlineMatch[1] : null;
 		const imageAltText = imageMatch ? imageMatch[1] : null;
-		const imageUrl = imageMatch ? imageMatch[2] : null;
+		// const imageUrl = imageMatch ? imageMatch[2] : null;
 		const linkText = linkMatch ? linkMatch[1] : null;
 		const linkUrl = linkMatch ? linkMatch[2] : null;
 		const tags = tagsMatch ? tagsMatch[1].split(',').map((tag) => tag.trim()) : [];
@@ -77,9 +65,9 @@
 		};
 	}
 
-	async function splitMarkdownInSections(md: string): Promise<ContentEntry[]> {
+	async function splitMarkdownInSections(md: string): Promise<ItemEntry[]> {
 		const sections = md.split('---\n');
-		const content: ContentEntry[] = [];
+		const content: ItemEntry[] = [];
 		for (const section of sections) {
 			if (!section.trim()) continue;
 			const entry = await extractMarkdownSection(section.trim());
@@ -110,44 +98,38 @@
 			throw error;
 		}
 	}
-	let content: ContentEntry[] = [];
+	let content: ItemEntry[] = [];
 	loadContent();
-	// $: console.log(content);
+	$: console.log(content);
 </script>
 
 <div class="container mx-auto px-4 py-8">
 	{#if content.length > 0}
-		{#each content as entry}
-			<article class="text-secondary dark:text-secondary mb-6 rounded-md p-6 shadow-md">
-				{#if entry.headline}
-					<h2 class="mb-4 text-xl font-bold">{entry.headline}</h2>
-				{/if}
-				{#if entry.imageUrl}
-					<img src={entry.imageUrl} alt={entry.imageAltText} class="mb-4 rounded-md" />
-				{/if}
-				{#if entry.linkUrl}
-					<a href={entry.linkUrl} class="mb-4 text-blue-500 hover:underline">{entry.linkText}</a>
-				{/if}
-				{#if entry.tags.length}
-					<div class="mb-4 flex flex-wrap">
-						{#each entry.tags as tag}
-							<span class="mb-2 mr-2 rounded-full bg-gray-200 px-3 py-1 text-sm text-gray-700"
-								>{tag}</span
-							>
-						{/each}
-					</div>
-				{/if}
-				{#if entry.categories.length}
-					<div class="mb-4 flex flex-wrap">
-						{#each entry.categories as category}
-							<span class="mb-2 mr-2 rounded-full bg-blue-200 px-3 py-1 text-sm text-blue-700"
-								>{category}</span
-							>
-						{/each}
-					</div>
-				{/if}
+		{#each content as item}
+			<ItemCard {item} />
+
+			<!-- <article class="text-secondary dark:text-secondary mb-6 rounded-md p-6 shadow-md">
+				<a href={entry.linkUrl} class="mb-4 text-blue-500 hover:underline">
+					<h2 class="mb-4 text-xl font-bold">{entry.linkText}</h2>
+				</a>
+
+				<img src={entry.imageUrl} alt={entry.imageAltText} class="mb-4 rounded-md" />
+				<div class="mb-4 flex flex-wrap">
+					{#each entry.tags as tag}
+						<span class="mb-2 mr-2 rounded-full bg-gray-200 px-3 py-1 text-sm text-gray-700"
+							>{tag}</span
+						>
+					{/each}
+				</div>
+				<div class="mb-4 flex flex-wrap">
+					{#each entry.categories as category}
+						<span class="mb-2 mr-2 rounded-full bg-blue-200 px-3 py-1 text-sm text-blue-700"
+							>{category}</span
+						>
+					{/each}
+				</div>
 				<p class="text-gray-700">{entry.description}</p>
-			</article>
+			</article> -->
 		{/each}
 	{:else}
 		<p>No content available</p>

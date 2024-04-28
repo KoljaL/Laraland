@@ -1,5 +1,5 @@
 ## [Laravel Debugbar](https://github.com/barryvdh/laravel-debugbar)
-![Laravel Debugbar](https://camo.githubusercontent.com/3653094f7aef86fc6b6178a89d6e88b24e1531b6/68747470733a2f2f6c61726176656c2e636f6d2f6173736574732f696d672f636f6d706f6e656e74732f6c6f676f2d64656275676261722e737667)  
+![Laravel Debugbar](https://github.com/barryvdh/laravel-debugbar/assets/973269/6600837a-8b2d-4acb-ab0c-158c9ca5439c)
 Tags: Debugging, Profiling  
 Categories: Laravel, Development  
 Description: Laravel Debugbar provides a developer toolbar for debugging Laravel applications.
@@ -62,8 +62,7 @@ Description: Laravel Cashier provides an expressive, fluent interface to Stripe'
 
 ---
 
-## [Laravel Nova](https://github.com/laravel/nova)
-![Laravel Nova](https://nova.laravel.com/img/nova-logo.svg)  
+## [Laravel Nova](https://nova.laravel.com/)
 Tags: Administration, Dashboard  
 Categories: Laravel, Development  
 Description: Laravel Nova is a beautifully designed administration panel for Laravel. Carefully crafted by the creators of Laravel to make you the most productive developer in the galaxy.
@@ -71,7 +70,7 @@ Description: Laravel Nova is a beautifully designed administration panel for Lar
 ---
 
 ## [Laravel Backpack](https://github.com/Laravel-Backpack/CRUD)
-![Laravel Backpack](https://backpackforlaravel.com/uploads/logos/backpack-logo.svg)  
+![Laravel Backpack](https://backpackforlaravel.com/presentation/img/backpack/logos/backpack_logo.svg)  
 Tags: Administration, CRUD  
 Categories: Laravel, Development  
 Description: Laravel Backpack is an administration panel package for Laravel which saves you time coding when building admin interfaces. It is perfect for projects which require an admin section.
@@ -79,7 +78,7 @@ Description: Laravel Backpack is an administration panel package for Laravel whi
 ---
 
 ## [Laravel Medialibrary](https://github.com/spatie/laravel-medialibrary)
-![Laravel Medialibrary](https://spatie.be/images/open-source/laravel-medialibrary/laravel-medialibrary-logo.png)  
+![Laravel Medialibrary](https://raw.githubusercontent.com/spatie/laravel-medialibrary/main/art/socialcard.png)  
 Tags: Media, Files  
 Categories: Laravel, Development  
 Description: Laravel Medialibrary is a powerful package for dealing with media files in Laravel applications. It provides a simple and fluent API to work with images, videos, and other media files.
@@ -87,7 +86,7 @@ Description: Laravel Medialibrary is a powerful package for dealing with media f
 ---
 
 ## [Laravel Excel](https://github.com/Maatwebsite/Laravel-Excel)
-![Laravel Excel](https://laravel-excel.com/assets/img/logos/laravel-excel-logo.png)  
+![Laravel Excel](https://user-images.githubusercontent.com/7728097/143205384-af3c73a8-0253-45f3-b5ac-28a335dddb87.png)  
 Tags: Excel, Spreadsheet  
 Categories: Laravel, Development  
 Description: Laravel Excel is a simple but powerful package for importing and exporting Excel and CSV files in Laravel applications.
@@ -111,7 +110,6 @@ Description: Laravel Dusk is a powerful browser automation and testing API for L
 ---
 
 ## [Laravel Backup](https://github.com/spatie/laravel-backup)
-![Laravel Backup](https://spatie.be/images/open-source/laravel-backup/laravel-backup-logo.png)  
 Tags: Backup, Database  
 Categories: Laravel, Development  
 Description: Laravel Backup provides an easy-to-use package for backing up your Laravel applications to various storage providers such as Amazon S3, Dropbox, and more.
@@ -119,7 +117,7 @@ Description: Laravel Backup provides an easy-to-use package for backing up your 
 ---
 
 ## [Laravel Breeze](https://github.com/laravel/breeze)
-![Laravel Breeze](https://laravel.com/assets/img/components/logo-breeze.svg)  
+![Laravel Breeze](https://raw.githubusercontent.com/laravel/breeze/9e8395d8f4780435d7c2ae6207d38ac9730252a3/art/logo.svg)  
 Tags: Authentication, Starter Kit  
 Categories: Laravel, Development  
 Description: Laravel Breeze is a minimal and simple starting point for building a Laravel application with authentication.
@@ -135,7 +133,6 @@ Description: Laravel Jetstream is a beautifully designed application scaffolding
 ---
 
 ## [Laravel Livewire](https://github.com/livewire/livewire)
-![Laravel Livewire](https://laravel-livewire.com/img/logos/livewire-logo.svg)  
 Tags: Frontend, Real-Time  
 Categories: Laravel, Development  
 Description: Laravel Livewire is a full-stack framework for Laravel that makes building dynamic interfaces simple, without leaving the comfort of Laravel.
@@ -151,7 +148,6 @@ Description: Laravel Fortify is a simple and flexible authentication solution fo
 ---
 
 ## [Laravel Vapor](https://vapor.laravel.com/)
-![Laravel Vapor](https://laravel.com/assets/img/components/logo-vapor.svg)  
 Tags: Deployment, Serverless  
 Categories: Laravel, Development  
 Description: Laravel Vapor is a serverless deployment platform for Laravel, powered by AWS Lambda.
@@ -167,7 +163,6 @@ Description: Laravel Tinker provides a powerful REPL (Read-Eval-Print Loop) for 
 ---
 
 ## [Laravel Blade UI Kit](https://github.com/blade-ui-kit/blade-ui-kit)
-![Laravel Blade UI Kit](https://camo.githubusercontent.com/bb9754c694b1348c3cb55bc0a5a23d5fbdc23927/68747470733a2f2f6272616e64696e672e6f72672f696d616765732f6c6f676f2e737667)  
 Tags: Blade, UI Components  
 Categories: Laravel, Development  
 Description: Laravel Blade UI Kit provides a set of reusable Blade components for Laravel, making it easy to build beautiful UIs.
@@ -175,7 +170,6 @@ Description: Laravel Blade UI Kit provides a set of reusable Blade components fo
 ---
 
 ## [Laravel Permissions](https://github.com/spatie/laravel-permission)
-![Laravel Permissions](https://spatie.be/images/open-source/laravel-permission/laravel-permission-logo.png)  
 Tags: Authorization, ACL  
 Categories: Laravel, Security  
 Description: Laravel Permissions is a powerful package for managing permissions and roles in Laravel applications.
@@ -183,7 +177,6 @@ Description: Laravel Permissions is a powerful package for managing permissions 
 ---
 
 ## [Laravel Activity Log](https://github.com/spatie/laravel-activitylog)
-![Laravel Activity Log](https://spatie.be/images/open-source/laravel-activitylog/laravel-activitylog-logo.png)  
 Tags: Logging, Activity  
 Categories: Laravel, Development  
 Description: Laravel Activity Log provides an easy way to log all activity in your Laravel application, including model changes, authentication, and more.
@@ -191,7 +184,6 @@ Description: Laravel Activity Log provides an easy way to log all activity in yo
 ---
 
 ## [Laravel Queue Monitor](https://github.com/pecee/queue-monitor)
-![Laravel Queue Monitor](https://pecee.github.io/queue-monitor/images/logo.svg)  
 Tags: Monitoring, Queue  
 Categories: Laravel, Development  
 Description: Laravel Queue Monitor provides a simple dashboard for monitoring and managing your Laravel queues.
@@ -199,7 +191,6 @@ Description: Laravel Queue Monitor provides a simple dashboard for monitoring an
 ---
 
 ## [Laravel Tenancy](https://github.com/tenancy/tenancy)
-![Laravel Tenancy](https://tenancy.dev/img/logo.svg)  
 Tags: Multitenancy, Database  
 Categories: Laravel, Development  
 Description: Laravel Tenancy provides a seamless way to add multitenancy to your Laravel applications.
@@ -207,7 +198,6 @@ Description: Laravel Tenancy provides a seamless way to add multitenancy to your
 ---
 
 ## [Laravel WebSockets](https://github.com/beyondcode/laravel-websockets)
-![Laravel WebSockets](https://beyondco.de/img/headers/laravel-websockets.jpg)  
 Tags: WebSockets, Real-Time  
 Categories: Laravel, Development  
 Description: Laravel WebSockets provides a simple and powerful way to build real-time applications with WebSockets in Laravel.
@@ -215,7 +205,6 @@ Description: Laravel WebSockets provides a simple and powerful way to build real
 ---
 
 ## [Laravel SEO](https://github.com/artesaos/seotools)
-![Laravel SEO](https://raw.githubusercontent.com/artesaos/seotools-logo/master/seotools-logo.png)  
 Tags: SEO, Optimization  
 Categories: Laravel, Development  
 Description: Laravel SEO Tools provides a set of utilities to help you optimize your Laravel application for search engines.
@@ -223,7 +212,6 @@ Description: Laravel SEO Tools provides a set of utilities to help you optimize 
 ---
 
 ## [Laravel Acl](https://github.com/kodeine/laravel-acl)
-![Laravel Acl](https://raw.githubusercontent.com/kodeine/laravel-acl/master/docs/assets/images/logo.png)  
 Tags: Authorization, ACL  
 Categories: Laravel, Security  
 Description: Laravel ACL is an access control list package for Laravel applications, providing a flexible and easy-to-use way to manage permissions.
@@ -231,7 +219,6 @@ Description: Laravel ACL is an access control list package for Laravel applicati
 ---
 
 ## [Laravel Impersonate](https://github.com/404labfr/laravel-impersonate)
-![Laravel Impersonate](https://raw.githubusercontent.com/404labfr/laravel-impersonate/master/impersonate.png)  
 Tags: Impersonation, Users  
 Categories: Laravel, Development  
 Description: Laravel Impersonate allows you to impersonate users in your Laravel application, useful for testing and debugging.
@@ -239,7 +226,6 @@ Description: Laravel Impersonate allows you to impersonate users in your Laravel
 ---
 
 ## [Laravel GeoIP](https://github.com/Torann/laravel-geoip)
-![Laravel GeoIP](https://raw.githubusercontent.com/Torann/laravel-geoip/master/docs/assets/geoip-logo.png)  
 Tags: GeoIP, Location  
 Categories: Laravel, Development  
 Description: Laravel GeoIP provides a simple interface for retrieving the geo-location of a user based on their IP address.
@@ -247,7 +233,6 @@ Description: Laravel GeoIP provides a simple interface for retrieving the geo-lo
 ---
 
 ## [Laravel Settings](https://github.com/anlutro/laravel-settings)
-![Laravel Settings](https://raw.githubusercontent.com/anlutro/laravel-settings/master/docs/logo.svg)  
 Tags: Settings, Configuration  
 Categories: Laravel, Development  
 Description: Laravel Settings provides a simple way to manage application settings and configuration values in Laravel applications.
@@ -255,7 +240,6 @@ Description: Laravel Settings provides a simple way to manage application settin
 ---
 
 ## [Laravel Analytics](https://github.com/spatie/laravel-analytics)
-![Laravel Analytics](https://spatie.be/images/open-source/laravel-analytics/laravel-analytics-logo.png)  
 Tags: Analytics, Tracking  
 Categories: Laravel, Development  
 Description: Laravel Analytics provides an easy-to-use interface for interacting with the Google Analytics API in Laravel applications.
@@ -263,7 +247,6 @@ Description: Laravel Analytics provides an easy-to-use interface for interacting
 ---
 
 ## [Laravel API Boilerplate](https://github.com/MilkshakeStudio/laravel-api-boilerplate)
-![Laravel API Boilerplate](https://raw.githubusercontent.com/MilkshakeStudio/laravel-api-boilerplate/master/public/images/logo.png)  
 Tags: API, Boilerplate  
 Categories: Laravel, Development  
 Description: Laravel API Boilerplate provides a solid foundation for building RESTful APIs with Laravel.
@@ -271,7 +254,6 @@ Description: Laravel API Boilerplate provides a solid foundation for building RE
 ---
 
 ## [Laravel Filemanager](https://github.com/UniSharp/laravel-filemanager)
-![Laravel Filemanager](https://raw.githubusercontent.com/UniSharp/laravel-filemanager/master/src/public/images/logo.svg)  
 Tags: File Management, Media  
 Categories: Laravel, Development  
 Description: Laravel Filemanager provides a simple file management interface for Laravel applications, allowing you to upload, browse, and manage files and folders.
@@ -279,7 +261,6 @@ Description: Laravel Filemanager provides a simple file management interface for
 ---
 
 ## [Laravel Sitemap](https://github.com/spatie/laravel-sitemap)
-![Laravel Sitemap](https://spatie.be/images/open-source/laravel-sitemap/laravel-sitemap-logo.png)  
 Tags: Sitemap, SEO  
 Categories: Laravel, Development  
 Description: Laravel Sitemap provides an easy way to generate sitemaps for your Laravel applications.
@@ -287,6 +268,5 @@ Description: Laravel Sitemap provides an easy way to generate sitemaps for your 
 ---
 
 ## [Laravel Image Optimizer](https://github.com/spatie/laravel-image-optimizer)
-![Laravel Image Optimizer](https://spatie.be/images/open-source/laravel-image-optimizer/laravel-image-optimizer-logo.png)  
 Tags: Image Optimization, Compression  
 Categories: Laravel
